@@ -53,9 +53,12 @@ OUT="$STATE_DIR/last-cron-scan.ndjson"
   > "$OUT" 2>/dev/null || true
 
 # Count findings (excluding the scan_summary record)
-COUNT=$(grep -c '"record_type":"finding"' "$OUT" 2>/dev/null || echo 0)
+COUNT=$(grep -c '"record_type":"finding"' "$OUT" 2>/dev/null || true)
+COUNT=${COUNT:-0}
+# Strip any whitespace
+COUNT=$(echo "$COUNT" | tr -d '[:space:]')
 
-if [[ "$COUNT" -eq 0 ]]; then
+if [[ "$COUNT" == "0" ]] || [[ -z "$COUNT" ]]; then
   # Silent — exits cleanly, nothing delivered
   exit 0
 fi
