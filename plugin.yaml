@@ -1,0 +1,12 @@
+name: bumblebee
+version: 0.1.0
+description: "Supply-chain exposure scanning via Perplexity's bumblebee. Checks on-disk package, extension, and developer-tool metadata against curated advisory catalogs (Shai-Hulud, Laravel-Lang, node-ipc, GemStuffer, and ongoing)."
+author: "@witt3rd"
+homepage: "https://github.com/witt3rd/hermes-bumblebee"
+license: MIT
+provides_tools:
+  - bumblebee_scan
+  - bumblebee_refresh_catalogs
+  - bumblebee_status
+provides_hooks:
+  - on_session_start
